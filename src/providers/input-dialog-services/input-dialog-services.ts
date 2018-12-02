@@ -30,9 +30,9 @@ export class InputDialogServicesProvider {
           value: item ? item.name : null
         },
         {
-          name: "quanity",
-          placeholder: "quanity",
-          value: item ? item.quanity : null,
+          name: "quantity",
+          placeholder: "quantity",
+          value: item ? item.quantity : null,
           type: 'select'
         }
       ],
@@ -47,12 +47,15 @@ export class InputDialogServicesProvider {
         },
         {
           text: "Save",
-          handler: item => {
+          handler: data => {
+            console.log(data)
             console.log("login clicked + " + JSON.stringify(item));
             if(index !== undefined){
+              item.name = data.name
+              item.quantity = data.quantity
               this.dataService.editItemPrompt(item, index);
             } else {
-              this.dataService.addItem(item);
+              this.dataService.addItem(data);
             }
           }
         }

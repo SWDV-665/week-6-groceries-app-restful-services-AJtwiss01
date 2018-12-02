@@ -39,18 +39,25 @@ export class groceriesServiceProvider {
   private handleError(error: Response | any){
     return Observable.throw(error.status)
    }
-  removeItem(index) {
-    this.items.splice(index, 1);
+  removeItem(id) {
+    this.http.delete(this.baseUrl + '/api/groceries/'+id).subscribe(res => {
+      this.items = res;
+      this.dataChangeSubject.next(true)
+    })
   }
   addItem(item){
-    this.items.push(item)
+    this.http.post(this.baseUrl + '/api/groceries',item).subscribe(res => {
+      this.items = res;
+      this.dataChangeSubject.next(true)
+    })
   }
-  showItemPrompt(item){
-    this.items.push(item)
 
-  }
   editItemPrompt(item, index){
-    this.items[index] = item
+    console.log(item)
+    this.http.put(this.baseUrl + '/api/groceries/'+item._id,item).subscribe(res => {
+      this.items = res;
+      this.dataChangeSubject.next(true)
+    })
 
   }
 }

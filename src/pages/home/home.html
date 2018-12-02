@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-  <h3 class="noItem" *ngIf="loadItems().length === 0">No Items on list</h3>
+  <h3 class="noItem" *ngIf="items.length === 0">No Items on list</h3>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
+    <ion-item-sliding *ngFor="let item of items; let i = index">
       <ion-item>
         <h2>{{ item.name }}</h2>
-        <p>{{ item.quanity }}</p>
+        <p>{{ item.quantity }}</p>
       </ion-item>
       <ion-item-options side="right">
         <button (click)="editItem(item, i)" ion-button color="primary">
@@ -43,6 +43,6 @@
     -->
   </ion-list>
   <ion-fab bottom right>
-    <button (click)="addItem()" ion-fab mini color="primary">Add</button>
+    <button (click)="addItem(item, i)" ion-fab mini color="primary">Add</button>
   </ion-fab>
 </ion-content>

@@ -26,7 +26,7 @@ export class HomePage {
     dataService.dataChanged$.subscribe((dataChanged: Boolean) => {this.loadItems()});
   }
   
-  ionicViewDidLoad(){
+  ionViewDidLoad(){
     this.loadItems()
   }
   loadItems(){
@@ -55,7 +55,7 @@ export class HomePage {
     });
 
     toast.present();
-    this.dataService.removeItem(index)
+    this.dataService.removeItem(item._id)
   }
 
   shareItem(item, index) {
